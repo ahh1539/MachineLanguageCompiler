@@ -233,7 +233,7 @@ this pushes a given constant value into the stack
     }
 
     /*
-this prints an item from a stack
+    this prints an item from a stack
      */
     public static class Print implements Instruction{
         @Override
@@ -302,8 +302,12 @@ this prints an item from a stack
 
         @Override
         public void execute() {
-
-            stack.push(table.get(ident));
+            if(!(table.containsKey(ident))) {
+                Errors.report(Errors.Type.UNINITIALIZED, null);
+            }
+            else {
+                stack.push(table.get(ident));
+            }
 
         }
         @Override
@@ -313,7 +317,6 @@ this prints an item from a stack
 
 
     }
-
 
     //
     // ENTER YOUR CODE FOR THE OTHER INSTRUCTION CLASSES HERE.
