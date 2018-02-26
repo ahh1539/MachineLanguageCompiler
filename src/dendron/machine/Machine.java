@@ -20,7 +20,7 @@ import java.lang.Math;
  * THIS CLASS IS INCOMPLETE. The student must add code to it.
  *
  * @author James Heliotis
- * @author YOUR NAME HERE
+ * @author Alexander Hurley
  */
 public class Machine {
 
@@ -290,7 +290,9 @@ this prints an item from a stack
         }
 
     }
-
+    /*
+    searches table for given value then pushes that value to stack
+     */
     public static class Load implements Instruction{
         private String ident;
 
@@ -300,6 +302,7 @@ this prints an item from a stack
 
         @Override
         public void execute() {
+
             stack.push(table.get(ident));
 
         }
