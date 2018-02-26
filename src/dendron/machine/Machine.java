@@ -146,11 +146,13 @@ public class Machine {
     }
 
 
-
+    /*
+    this takes two items from the stack and divides them then returns the value to the stack
+     */
     public static class Divide implements Instruction{
         @Override
         public void execute() {
-            if(stack.isEmpty()){
+            if(stack.size() < 2){
                 Errors.report(Errors.Type.PREMATURE_END, null);
             }
             int op2 = stack.pop();
@@ -174,7 +176,7 @@ public class Machine {
 
         @Override
         public void execute() {
-            if(stack.isEmpty()){
+            if(stack.size() < 2){
                 Errors.report(Errors.Type.PREMATURE_END, null);
             }
             int op2 = stack.pop();
@@ -189,10 +191,13 @@ public class Machine {
 
     }
 
+    /*
+    this takes a value out of the stack and returns its square root
+     */
     public static class SquareRoot implements Instruction{
         @Override
         public void execute() {
-            if(stack.isEmpty()){
+            if(stack.size() < 1){
                 Errors.report(Errors.Type.PREMATURE_END, null);
             }
             int op2 = stack.pop();
@@ -233,6 +238,10 @@ this prints an item from a stack
     public static class Print implements Instruction{
         @Override
         public void execute() {
+            if(stack.size() < 1){
+                Errors.report(Errors.Type.PREMATURE_END, null);
+            }
+
             int op1 = stack.pop();
             System.out.println("***" + op1);
         }
@@ -248,7 +257,7 @@ this prints an item from a stack
     public static class Negate implements Instruction{
         @Override
         public void execute() {
-            if(stack.isEmpty()){
+            if(stack.size() < 1){
                 Errors.report(Errors.Type.PREMATURE_END, null);
             }
             int op1 = stack.pop();
@@ -268,7 +277,7 @@ this prints an item from a stack
     public static class Multiply implements Instruction{
         @Override
         public void execute() {
-            if(stack.isEmpty()){
+            if(stack.size() < 2){
                 Errors.report(Errors.Type.PREMATURE_END, null);
             }
             int op2 = stack.pop();
