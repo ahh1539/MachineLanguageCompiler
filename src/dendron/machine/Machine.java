@@ -150,9 +150,17 @@ public class Machine {
     public static class Divide implements Instruction{
         @Override
         public void execute() {
+            if(stack.isEmpty()){
+                Errors.report(Errors.Type.PREMATURE_END, null);
+            }
             int op2 = stack.pop();
             int op1 = stack.pop();
-            stack.push( op1 / op2 );
+            if(op2 == 0){
+                Errors.report(Errors.Type.DIVIDE_BY_ZERO, null);
+            }
+            else {
+                stack.push(op1 / op2);
+            }
         }
 
         @Override
@@ -166,6 +174,9 @@ public class Machine {
 
         @Override
         public void execute() {
+            if(stack.isEmpty()){
+                Errors.report(Errors.Type.PREMATURE_END, null);
+            }
             int op2 = stack.pop();
             int op1 = stack.pop();
             stack.push( op1 - op2 );
@@ -181,6 +192,9 @@ public class Machine {
     public static class SquareRoot implements Instruction{
         @Override
         public void execute() {
+            if(stack.isEmpty()){
+                Errors.report(Errors.Type.PREMATURE_END, null);
+            }
             int op2 = stack.pop();
             double op1 = Math.sqrt(op2);
             int op3 = (int)op1;
@@ -193,7 +207,9 @@ public class Machine {
         }
 
     }
-
+    /*
+this pushes a given constant value into the stack
+     */
     public static class PushConst implements Instruction{
         private int constant;
 
@@ -211,6 +227,9 @@ public class Machine {
 
     }
 
+    /*
+this prints an item from a stack
+     */
     public static class Print implements Instruction{
         @Override
         public void execute() {
@@ -223,10 +242,15 @@ public class Machine {
         }
 
     }
-
+    /*
+    this takes a value out of stack and makes it negative
+     */
     public static class Negate implements Instruction{
         @Override
         public void execute() {
+            if(stack.isEmpty()){
+                Errors.report(Errors.Type.PREMATURE_END, null);
+            }
             int op1 = stack.pop();
             int op2 = (op1 * -1);
             stack.push(op2);
@@ -238,10 +262,15 @@ public class Machine {
         }
 
     }
-
+    /*
+    This takes two values from stack multiplies them and pushes the value
+     */
     public static class Multiply implements Instruction{
         @Override
         public void execute() {
+            if(stack.isEmpty()){
+                Errors.report(Errors.Type.PREMATURE_END, null);
+            }
             int op2 = stack.pop();
             int op1 = stack.pop();
             stack.push( op1 * op2 );
