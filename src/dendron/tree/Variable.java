@@ -10,7 +10,7 @@ Date: 3/8/2018
  */
 public class Variable implements ExpressionNode{
 
-    public String name;
+    private String name;
 
     public Variable(String name){
         this.name = name;
