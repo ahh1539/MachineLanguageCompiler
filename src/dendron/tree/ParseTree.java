@@ -4,6 +4,7 @@ import dendron.machine.Machine;
 import dendron.tree.ActionNode;
 import dendron.tree.ExpressionNode;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 /*
@@ -15,7 +16,7 @@ Date: 3/9/2018
  *
  * THIS CLASS IS UNIMPLEMENTED. All methods are stubbed out.
  *
- * @author YOUR NAME HERE
+ * @author Alexander Hurley
  */
 public class ParseTree {
 
@@ -26,6 +27,10 @@ public class ParseTree {
      * stored internally.
      * @param program the token list (Strings)
      */
+    private Program program;
+    private HashMap hash = new HashMap();
+
+
     public ParseTree( List< String > program ) {
     }
 

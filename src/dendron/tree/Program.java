@@ -18,7 +18,6 @@ public class Program implements ActionNode {
      */
     public void addAction(ActionNode newNode){
         ary.add(newNode);
-
     }
 
     /*
@@ -37,7 +36,6 @@ public class Program implements ActionNode {
         for (ActionNode thing: ary){
             thing.infixDisplay();
         }
-
     }
 
     /*
