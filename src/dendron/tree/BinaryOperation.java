@@ -65,11 +65,11 @@ public class BinaryOperation implements ExpressionNode {
     the infixDisplay of the two child nodes separated by the operator and surrounded by parentheses
      */
     public void infixDisplay(){
-        System.out.println("(");
+        System.out.print("(");
         leftChild.infixDisplay();
-        System.out.println(operator);
+        System.out.print(operator);
         rightChild.infixDisplay();
-        System.out.println(")");
+        System.out.print(")");
 
     }
 

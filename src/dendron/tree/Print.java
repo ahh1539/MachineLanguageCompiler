@@ -29,7 +29,7 @@ public class Print implements ActionNode{
     prints out user code
      */
     public void infixDisplay(){
-        System.out.println("Print");
+        System.out.print("Print");
         printee.infixDisplay();
     }
 

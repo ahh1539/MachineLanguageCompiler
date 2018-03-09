@@ -23,7 +23,7 @@ public class Constant implements ExpressionNode{
     prints out value
      */
     public void infixDisplay(){
-        System.out.println(this.value);
+        System.out.print(this.value);
 
     }
 

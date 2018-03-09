@@ -1,9 +1,7 @@
 package dendron.tree;
 
 import dendron.machine.Machine;
-import org.omg.CORBA.INITIALIZE;
-import org.omg.CORBA.MARSHAL;
-import org.omg.CORBA.PUBLIC_MEMBER;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,10 +48,10 @@ public class UnaryOperation implements ExpressionNode {
     Print, on standard output, the infixDisplay of the child nodes preceded by the operator
      */
     public void infixDisplay(){
-        System.out.println("(");
-        System.out.println(operator);
+        System.out.print("(");
+        System.out.print(operator);
         expr.infixDisplay();
-        System.out.println(")");
+        System.out.print(")");
     }
 
     /*
@@ -65,8 +63,9 @@ public class UnaryOperation implements ExpressionNode {
         if (operator.equals(NEG)){
             llist.add(new Machine.Negate());
         }
+
         if  (operator.equals(SQRT)) {
-            llist.add(new Machine.Negate());
+            llist.add(new Machine.SquareRoot());
 
         }
         return llist;

@@ -39,9 +39,11 @@ public class ParseTree {
             }
             if(program.get(0).equals(":=")) {
                 program.remove(0);
-                prgm.addAction(new Assignment(program.get(0), parseExpr(program)));
+                prgm.addAction(new Assignment(program.remove(0), parseExpr(program)));
             }
             else {
+                program.remove(0);
+                System.out.println(program);
                 prgm.addAction(new Print(parseExpr(program)));
             }
 
@@ -67,6 +69,32 @@ public class ParseTree {
      * @return a parse tree for this expression
      */
     private ExpressionNode parseExpr( List< String > program ) {
+        while (true) {
+
+            if (program.isEmpty() || program.get(0).equals("@") || program.get(0).equals(":=")) {
+                break;
+            }
+            else{
+                if(program.get(0).equals("#")|| program.get(0).equals("_")){
+                    String temp = program.remove(0);
+                    return new UnaryOperation(temp,parseExpr(program));
+                }
+                if(program.get(0).equals("-")||program.get(0).equals("+")||program.get(0).equals("/")||program.get(0).equals("*")){
+                    String temp = program.remove(0);
+                    return new BinaryOperation(temp, parseExpr(program), parseExpr(program));
+                }
+                if(program.get(0).matches( "^[a-zA-Z].*" )){
+                    String temp = program.remove(0);
+                    return new Variable(temp);
+
+                }
+                else{
+                    String temp = program.remove(0);
+                    return new Constant(Integer.parseInt(temp));
+                }
+            }
+
+        }
         return null;
     }
 
@@ -76,6 +104,7 @@ public class ParseTree {
      * @see dendron.tree.ActionNode#infixDisplay()
      */
     public void displayProgram() {
+        prgm.infixDisplay();
     }
 
     /**
@@ -83,6 +112,7 @@ public class ParseTree {
      * @see dendron.tree.ActionNode#execute(Map)
      */
     public void interpret() {
+        prgm.execute(hash);
     }
 
     /**
@@ -92,7 +122,7 @@ public class ParseTree {
      * @see Machine.Instruction#execute()
      */
     public List< Machine.Instruction > compile() {
-        return null;
+        return prgm.emit();
     }
 
 }

@@ -34,7 +34,7 @@ public class Assignment implements ActionNode {
     displays code in infix form
      */
     public void infixDisplay(){
-        System.out.print(":==" + ident);
+        System.out.print(ident + " " + ":=" + " ");
         rhs.infixDisplay();
         System.out.println();
 

@@ -20,7 +20,7 @@ public class Variable implements ExpressionNode{
     prints the name
      */
     public void infixDisplay(){
-        System.out.println(name);
+        System.out.print(name);
     }
 
     /*
