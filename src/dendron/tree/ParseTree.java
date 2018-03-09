@@ -26,6 +26,7 @@ public class ParseTree {
      * in the program's set of variables. The resulting parse tree is
      * stored internally.
      * @param program the token list (Strings)
+     *
      */
     private Program prgm;
     private HashMap hash = new HashMap();
