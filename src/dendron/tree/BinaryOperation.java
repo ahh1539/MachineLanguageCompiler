@@ -27,6 +27,9 @@ public class BinaryOperation implements ExpressionNode {
 
     private ExpressionNode rightChild;
 
+    /*
+    stores operator, leftChild, and rightChild
+     */
     public BinaryOperation(String operator, ExpressionNode leftChild, ExpressionNode rightChild){
         this.operator=operator;
         this.leftChild=leftChild;
@@ -34,6 +37,9 @@ public class BinaryOperation implements ExpressionNode {
 
     }
 
+    /*
+
+     */
     public int evaluate(java.util.Map<String,Integer> symTab){
         if(operator.equals(ADD)){
             return leftChild.evaluate(symTab) + rightChild.evaluate(symTab);
@@ -55,6 +61,9 @@ public class BinaryOperation implements ExpressionNode {
         }
     }
 
+    /*
+
+     */
     public void infixDisplay(){
         leftChild.infixDisplay();
         System.out.println(operator);
@@ -63,6 +72,9 @@ public class BinaryOperation implements ExpressionNode {
 
     }
 
+    /*
+
+     */
     public java.util.List<Machine.Instruction> emit(){
         ArrayList<Machine.Instruction> llist = new ArrayList<Machine.Instruction>();
         llist.addAll(leftChild.emit());
@@ -79,6 +91,7 @@ public class BinaryOperation implements ExpressionNode {
         if (operator.equals(MUL)){
             llist.add(new Machine.Multiply());
         }
+        return llist;
 
     }
 

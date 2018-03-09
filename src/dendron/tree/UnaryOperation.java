@@ -23,11 +23,17 @@ public class UnaryOperation implements ExpressionNode {
 
     public static final java.util.Collection<String> OPERATORS = new ArrayList<String>(Arrays.asList(NEG,SQRT));
 
+    /*
+    stores the operator and expr node
+     */
     public UnaryOperation(String operator, ExpressionNode expr){
         this.operator=operator;
         this.expr=expr;
     }
 
+    /*
+    the result of evaluating the expression and applying the operator to it
+     */
     public int evaluate(java.util.Map<String,Integer> symTab){
         if(operator.equals(NEG)){
             return ((-1) * expr.evaluate(symTab));
@@ -40,6 +46,9 @@ public class UnaryOperation implements ExpressionNode {
         }
     }
 
+    /*
+    Print, on standard output, the infixDisplay of the child nodes preceded by the operator
+     */
     public void infixDisplay(){
         System.out.println("(");
         System.out.println(operator);
@@ -47,6 +56,9 @@ public class UnaryOperation implements ExpressionNode {
         System.out.println(")");
     }
 
+    /*
+    pops value off stack then changes it based on conditional then pushes it again
+     */
     public java.util.List<Machine.Instruction> emit(){
         ArrayList<Machine.Instruction> llist = new ArrayList<Machine.Instruction>();
         llist.addAll(expr.emit());
