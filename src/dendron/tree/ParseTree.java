@@ -27,11 +27,27 @@ public class ParseTree {
      * stored internally.
      * @param program the token list (Strings)
      */
-    private Program program;
+    private Program prgm;
     private HashMap hash = new HashMap();
 
 
     public ParseTree( List< String > program ) {
+        this.prgm = new Program();
+        while (true){
+            if(program.isEmpty()){
+                break;
+            }
+            if(program.get(0).equals(":=")) {
+                program.remove(0);
+                prgm.addAction(new Assignment(program.get(0), parseExpr(program)));
+            }
+            else {
+                prgm.addAction(new Print(parseExpr(program)));
+            }
+
+        }
+
+
     }
 
     /**
