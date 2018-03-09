@@ -5,6 +5,10 @@ import dendron.machine.Machine;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/*
+Name: Alexander Hurley
+Date: 3/9/2018
+ */
 public class BinaryOperation implements ExpressionNode {
 
     public static final String ADD = "+";
@@ -60,6 +64,21 @@ public class BinaryOperation implements ExpressionNode {
     }
 
     public java.util.List<Machine.Instruction> emit(){
+        ArrayList<Machine.Instruction> llist = new ArrayList<Machine.Instruction>();
+        llist.addAll(leftChild.emit());
+        llist.addAll(rightChild.emit());
+        if (operator.equals(ADD)){
+            llist.add(new Machine.Add());
+        }
+        if (operator.equals(SUB)){
+            llist.add(new Machine.Subtract());
+        }
+        if (operator.equals(DIV)){
+            llist.add(new Machine.Divide());
+        }
+        if (operator.equals(MUL)){
+            llist.add(new Machine.Multiply());
+        }
 
     }
 

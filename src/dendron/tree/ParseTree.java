@@ -6,7 +6,10 @@ import dendron.tree.ExpressionNode;
 
 import java.util.List;
 import java.util.Map;
-
+/*
+Name: Alexander Hurley
+Date: 3/9/2018
+ */
 /**
  * Operations that are done on a Dendron code parse tree.
  *

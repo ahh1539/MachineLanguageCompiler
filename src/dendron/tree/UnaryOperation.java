@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 
+/*
+Name: Alexander Hurley
+Date: 3/9/2018
+ */
 public class UnaryOperation implements ExpressionNode {
 
     public static final String NEG = "_";
@@ -37,12 +41,23 @@ public class UnaryOperation implements ExpressionNode {
     }
 
     public void infixDisplay(){
+        System.out.println("(");
         System.out.println(operator);
         expr.infixDisplay();
-        System.out.println();
+        System.out.println(")");
     }
 
     public java.util.List<Machine.Instruction> emit(){
+        ArrayList<Machine.Instruction> llist = new ArrayList<Machine.Instruction>();
+        llist.addAll(expr.emit());
+        if (operator.equals(NEG)){
+            llist.add(new Machine.Negate());
+        }
+        if  (operator.equals(SQRT)) {
+            llist.add(new Machine.Negate());
+
+        }
+        return llist;
 
     }
 
