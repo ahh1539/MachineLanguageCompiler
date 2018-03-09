@@ -38,7 +38,7 @@ public class BinaryOperation implements ExpressionNode {
     }
 
     /*
-
+    Compute the result of evaluating both operands and applying the operator to them
      */
     public int evaluate(java.util.Map<String,Integer> symTab){
         if(operator.equals(ADD)){
@@ -62,18 +62,19 @@ public class BinaryOperation implements ExpressionNode {
     }
 
     /*
-
+    the infixDisplay of the two child nodes separated by the operator and surrounded by parentheses
      */
     public void infixDisplay(){
+        System.out.println("(");
         leftChild.infixDisplay();
         System.out.println(operator);
         rightChild.infixDisplay();
-        System.out.println();
+        System.out.println(")");
 
     }
 
     /*
-
+    pops 2 values off stack then changes them based on conditional then pushes them again
      */
     public java.util.List<Machine.Instruction> emit(){
         ArrayList<Machine.Instruction> llist = new ArrayList<Machine.Instruction>();
