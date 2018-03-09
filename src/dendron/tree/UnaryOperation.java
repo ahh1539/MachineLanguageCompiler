@@ -1,23 +1,37 @@
 package dendron.tree;
 
 import dendron.machine.Machine;
+import org.omg.CORBA.INITIALIZE;
 import org.omg.CORBA.PUBLIC_MEMBER;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class UnaryOperation implements ExpressionNode {
 
     public static final String NEG = "_";
     public static final String SQRT = "#";
 
-    public static final java.util.Collection<String> OPERATORS{
+    private ExpressionNode expr;
+    private String operator;
 
-    }
+    public static final java.util.Collection<String> OPERATORS = new ArrayList<String>(Arrays.asList(NEG,SQRT));
 
     public UnaryOperation(String operator, ExpressionNode expr){
-
+        this.operator=operator;
+        this.expr=expr;
     }
 
     public int evaluate(java.util.Map<String,Integer> symTab){
-
+        if(operator.equals(NEG)){
+            return ((-1) * expr.evaluate(symTab));
+        }
+        if (operator.equals(SQRT)){
+            return (int) Math.sqrt(expr.evaluate(symTab));
+        }
+        else{
+            return -1;
+        }
     }
 
     public void infixDisplay(){
@@ -25,6 +39,7 @@ public class UnaryOperation implements ExpressionNode {
     }
 
     public java.util.List<Machine.Instruction> emit(){
+
 
     }
 
