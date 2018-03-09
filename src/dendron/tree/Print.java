@@ -2,13 +2,13 @@ package dendron.tree;
 
 import dendron.machine.Machine;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /*
 Name: Alexander Hurley
 Date: 3/8/2018
  */
+
 public class Print implements ActionNode{
 
     private ExpressionNode printee;
@@ -40,6 +40,7 @@ public class Print implements ActionNode{
     public java.util.List<Machine.Instruction> emit(){
         Machine.Print printt = new Machine.Print();
         ArrayList<Machine.Instruction> llist = new ArrayList<Machine.Instruction>();
+        llist.addAll(printee.emit());
         llist.add(printt);
         return llist;
     }
