@@ -2,10 +2,12 @@ package dendron.tree;
 
 import dendron.machine.Machine;
 import org.omg.CORBA.INITIALIZE;
+import org.omg.CORBA.MARSHAL;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Stack;
 
 public class UnaryOperation implements ExpressionNode {
 
@@ -35,11 +37,12 @@ public class UnaryOperation implements ExpressionNode {
     }
 
     public void infixDisplay(){
-
+        System.out.println(operator);
+        expr.infixDisplay();
+        System.out.println();
     }
 
     public java.util.List<Machine.Instruction> emit(){
-
 
     }
 
