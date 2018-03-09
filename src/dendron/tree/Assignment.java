@@ -17,23 +17,23 @@ public class Assignment implements ActionNode {
     /*
     stores Expression node and ident
      */
-    public Assignment(String ident, ExpressionNode rhs){
-        this.ident=ident;
-        this.rhs=rhs;
+    public Assignment(String ident, ExpressionNode rhs) {
+        this.ident = ident;
+        this.rhs = rhs;
     }
 
 
     /*
     Evaluates the RHS expression and assign the result value to the variable.
      */
-    public void execute(java.util.Map<String,Integer> symTab){
+    public void execute(java.util.Map<String, Integer> symTab) {
         symTab.put(ident, rhs.evaluate(symTab));
     }
 
     /*
     displays code in infix form
      */
-    public void infixDisplay(){
+    public void infixDisplay() {
         System.out.print(ident + " " + ":=" + " ");
         rhs.infixDisplay();
         System.out.println();
@@ -43,7 +43,7 @@ public class Assignment implements ActionNode {
     /*
     stores a machine instruction, and the code made by rhs node that pushes to stack
      */
-    public java.util.List<Machine.Instruction> emit(){
+    public java.util.List<Machine.Instruction> emit() {
         ArrayList<Machine.Instruction> llist = new ArrayList<Machine.Instruction>();
         llist.addAll(rhs.emit());
         llist.add(new Machine.Store(ident));

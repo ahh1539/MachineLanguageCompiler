@@ -19,27 +19,26 @@ public class UnaryOperation implements ExpressionNode {
     private ExpressionNode expr;
     private String operator;
 
-    public static final java.util.Collection<String> OPERATORS = new ArrayList<String>(Arrays.asList(NEG,SQRT));
+    public static final java.util.Collection<String> OPERATORS = new ArrayList<String>(Arrays.asList(NEG, SQRT));
 
     /*
     stores the operator and expr node
      */
-    public UnaryOperation(String operator, ExpressionNode expr){
-        this.operator=operator;
-        this.expr=expr;
+    public UnaryOperation(String operator, ExpressionNode expr) {
+        this.operator = operator;
+        this.expr = expr;
     }
 
     /*
     the result of evaluating the expression and applying the operator to it
      */
-    public int evaluate(java.util.Map<String,Integer> symTab){
-        if(operator.equals(NEG)){
+    public int evaluate(java.util.Map<String, Integer> symTab) {
+        if (operator.equals(NEG)) {
             return ((-1) * expr.evaluate(symTab));
         }
-        if (operator.equals(SQRT)){
+        if (operator.equals(SQRT)) {
             return (int) Math.sqrt(expr.evaluate(symTab));
-        }
-        else{
+        } else {
             return -1;
         }
     }
@@ -47,7 +46,7 @@ public class UnaryOperation implements ExpressionNode {
     /*
     Print, on standard output, the infixDisplay of the child nodes preceded by the operator
      */
-    public void infixDisplay(){
+    public void infixDisplay() {
         System.out.print("(");
         System.out.print(operator);
         expr.infixDisplay();
@@ -57,22 +56,20 @@ public class UnaryOperation implements ExpressionNode {
     /*
     pops value off stack then changes it based on conditional then pushes it again
      */
-    public java.util.List<Machine.Instruction> emit(){
+    public java.util.List<Machine.Instruction> emit() {
         ArrayList<Machine.Instruction> llist = new ArrayList<Machine.Instruction>();
         llist.addAll(expr.emit());
-        if (operator.equals(NEG)){
+        if (operator.equals(NEG)) {
             llist.add(new Machine.Negate());
         }
 
-        if  (operator.equals(SQRT)) {
+        if (operator.equals(SQRT)) {
             llist.add(new Machine.SquareRoot());
 
         }
         return llist;
 
     }
-
-
 
 
 }

@@ -19,7 +19,7 @@ public class BinaryOperation implements ExpressionNode {
 
     public static final String MUL = "*";
 
-    public static final java.util.Collection<String> OPERATORS = new ArrayList<String>(Arrays.asList(ADD,SUB,DIV,MUL));
+    public static final java.util.Collection<String> OPERATORS = new ArrayList<String>(Arrays.asList(ADD, SUB, DIV, MUL));
 
     private String operator;
 
@@ -30,33 +30,31 @@ public class BinaryOperation implements ExpressionNode {
     /*
     stores operator, leftChild, and rightChild
      */
-    public BinaryOperation(String operator, ExpressionNode leftChild, ExpressionNode rightChild){
-        this.operator=operator;
-        this.leftChild=leftChild;
-        this.rightChild=rightChild;
+    public BinaryOperation(String operator, ExpressionNode leftChild, ExpressionNode rightChild) {
+        this.operator = operator;
+        this.leftChild = leftChild;
+        this.rightChild = rightChild;
 
     }
 
     /*
     Compute the result of evaluating both operands and applying the operator to them
      */
-    public int evaluate(java.util.Map<String,Integer> symTab){
-        if(operator.equals(ADD)){
+    public int evaluate(java.util.Map<String, Integer> symTab) {
+        if (operator.equals(ADD)) {
             return leftChild.evaluate(symTab) + rightChild.evaluate(symTab);
         }
-        if(operator.equals(SUB)){
+        if (operator.equals(SUB)) {
             return leftChild.evaluate(symTab) - rightChild.evaluate(symTab);
 
         }
-        if(operator.equals(DIV)){
+        if (operator.equals(DIV)) {
             return leftChild.evaluate(symTab) / rightChild.evaluate(symTab);
         }
-        if(operator.equals(MUL)) {
+        if (operator.equals(MUL)) {
             return leftChild.evaluate(symTab) * rightChild.evaluate(symTab);
 
-        }
-
-        else{
+        } else {
             return -1;
         }
     }
@@ -64,7 +62,7 @@ public class BinaryOperation implements ExpressionNode {
     /*
     the infixDisplay of the two child nodes separated by the operator and surrounded by parentheses
      */
-    public void infixDisplay(){
+    public void infixDisplay() {
         System.out.print("(");
         leftChild.infixDisplay();
         System.out.print(operator);
@@ -76,20 +74,20 @@ public class BinaryOperation implements ExpressionNode {
     /*
     pops 2 values off stack then changes them based on conditional then pushes them again
      */
-    public java.util.List<Machine.Instruction> emit(){
+    public java.util.List<Machine.Instruction> emit() {
         ArrayList<Machine.Instruction> llist = new ArrayList<Machine.Instruction>();
         llist.addAll(leftChild.emit());
         llist.addAll(rightChild.emit());
-        if (operator.equals(ADD)){
+        if (operator.equals(ADD)) {
             llist.add(new Machine.Add());
         }
-        if (operator.equals(SUB)){
+        if (operator.equals(SUB)) {
             llist.add(new Machine.Subtract());
         }
-        if (operator.equals(DIV)){
+        if (operator.equals(DIV)) {
             llist.add(new Machine.Divide());
         }
-        if (operator.equals(MUL)){
+        if (operator.equals(MUL)) {
             llist.add(new Machine.Multiply());
         }
         return llist;
